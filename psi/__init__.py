@@ -4,8 +4,12 @@ import psi.support
 apikey = None
 class newSite:
     def __init__(self, url) -> None:
-        if url.startswith("http") == True:
+        if url.startswith("http://") == True:
             self.url = url
+            self.cleanURL = url.strip('http://')
+        elif url.startswith("https://") == True:
+            self.url = url
+            self.cleanURL = url.strip('https://')
         elif url.startswith("www") == True:
             self.url = "http://" + url
         else:
