@@ -10,8 +10,7 @@ apikey = None
 log.log('INFO', 'PSI init completed.')
 class newSite:
     def __init__(self, url) -> None:
-        newSitelog = psi.support.log.logFile('psi.log', 'General', 'Class Method')
-        newSitelog.log('INFO', 'New class object created: '+url)
+        log.log('INFO', 'New class object created: '+url)
         if url.startswith("http://") == True:
             self.url = url
             self.cleanURL = url.strip('http://')
