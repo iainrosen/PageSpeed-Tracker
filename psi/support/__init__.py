@@ -1,4 +1,5 @@
 def defineProperties(siteObj):
+    siteObj.score = siteObj.rdump["lighthouseResult"]["categories"]["performance"]["score"]
     siteObj.fetchTime = siteObj.rdump["lighthouseResult"]["fetchTime"]
     siteObj.id = siteObj.rdump["id"]
     siteObj.userAgent = siteObj.rdump["lighthouseResult"]["userAgent"]

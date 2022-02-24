@@ -22,7 +22,6 @@ class newSite:
         if r.status_code != 200:
             raise Exception("Unable to query, API returned code " + str(r.status_code))
         else:
-            self.score = r.json()["lighthouseResult"]["categories"]["performance"]["score"]
             self.rdump = r.json()
             self = psi.support.defineProperties(self)
     def saveResult(self, filename):
@@ -31,5 +30,4 @@ class newSite:
     def readResult(self, filename):
         with open(filename, 'r') as saveFile:
             self.rdump = json.loads(saveFile.read())
-            self.score = self.rdump["lighthouseResult"]["categories"]["performance"]["score"]
             self = psi.support.defineProperties(self)
