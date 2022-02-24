@@ -25,7 +25,7 @@ class newSite:
             self = psi.support.defineProperties(self)
     def saveResult(self, filename):
         with open(filename, 'w') as saveFile:
-            saveFile.write(json.dumps(self.getTestProperty('dump')))
+            saveFile.write(json.dumps(self.rdump))
     def readResult(self, filename):
         with open(filename, 'r') as saveFile:
             self.rdump = json.loads(saveFile.read())
