@@ -21,30 +21,6 @@ class newSite:
         else:
             self.score = r.json()["lighthouseResult"]["categories"]["performance"]["score"]
             self.rdump = r.json()
-    def getTestProperty(self, property):
-        match property:
-            case "id":
-                return(self.rdump["id"])
-            case "userAgent":
-                return(self.rdump["lighthouseResult"]["userAgent"])
-            case "fetchTime":
-                return(self.rdump["lighthouseResult"]["fetchTime"])
-            case "benchmarkIndex":
-                return(self.rdump["lighthouseResult"]["environment"]["benchmarkIndex"])
-            case "network-server-latency":
-                return(self.rdump["lighthouseResult"]["audits"]["network-server-latency"]["displayValue"])
-            case "server-response-time":
-                return(self.rdump["lighthouseResult"]["audits"]["server-response-time"]["details"]["items"][0]["responseTime"])
-            case "interactive":
-                return(self.rdump["lighthouseResult"]["audits"]["interactive"]["numericValue"])
-            case "total-blocking-time":
-                return(self.rdump["lighthouseResult"]["audits"]["total-blocking-time"]["displayValue"])
-            case "network-rtt":
-                return(self.rdump["lighthouseResult"]["audits"]["network-rtt"]["displayValue"])
-            case "speed-index":
-                return(self.rdump["lighthouseResult"]["audits"]["speed-index"]["displayValue"])
-            case "dump":
-                return(self.rdump)
     def saveResult(self, filename):
         with open(filename, 'w') as saveFile:
             saveFile.write(json.dumps(self.getTestProperty('dump')))
