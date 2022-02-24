@@ -1,5 +1,6 @@
 import requests
 import json
+import psi.support
 apikey = None
 class newSite:
     def __init__(self, url) -> None:
@@ -21,6 +22,7 @@ class newSite:
         else:
             self.score = r.json()["lighthouseResult"]["categories"]["performance"]["score"]
             self.rdump = r.json()
+            self = psi.support.defineProperties(self)
     def saveResult(self, filename):
         with open(filename, 'w') as saveFile:
             saveFile.write(json.dumps(self.getTestProperty('dump')))
@@ -28,3 +30,4 @@ class newSite:
         with open(filename, 'r') as saveFile:
             self.rdump = json.loads(saveFile.read())
             self.score = self.rdump["lighthouseResult"]["categories"]["performance"]["score"]
+            self = psi.support.defineProperties(self)

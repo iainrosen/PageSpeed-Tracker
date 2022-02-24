@@ -1,0 +1,11 @@
+def defineProperties(siteObj):
+    siteObj.fetchTime = siteObj.rdump["lighthouseResult"]["fetchTime"]
+    siteObj.id = siteObj.rdump["id"]
+    siteObj.userAgent = siteObj.rdump["lighthouseResult"]["userAgent"]
+    siteObj.benchmarkIndex = siteObj.rdump["lighthouseResult"]["environment"]["benchmarkIndex"]
+    siteObj.networkServerLatency = siteObj.rdump["lighthouseResult"]["audits"]["network-server-latency"]["displayValue"]
+    siteObj.serverResponseTime = siteObj.rdump["lighthouseResult"]["audits"]["server-response-time"]["details"]["items"][0]["responseTime"]
+    siteObj.interactive = siteObj.rdump["lighthouseResult"]["audits"]["interactive"]["numericValue"]
+    siteObj.totalBlockingTime = siteObj.rdump["lighthouseResult"]["audits"]["total-blocking-time"]["displayValue"]
+    siteObj.networkRtt = siteObj.rdump["lighthouseResult"]["audits"]["network-rtt"]["displayValue"]
+    siteObj.speedIndex = siteObj.rdump["lighthouseResult"]["audits"]["speed-index"]["displayValue"]
