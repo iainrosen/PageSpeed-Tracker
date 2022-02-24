@@ -21,8 +21,6 @@ class newSite:
         else:
             self.score = r.json()["lighthouseResult"]["categories"]["performance"]["score"]
             self.rdump = r.json()
-    def retest(self):
-        self.__init__(self.url)
     def getTestProperty(self, property):
         match property:
             case "id":
