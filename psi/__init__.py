@@ -1,9 +1,17 @@
 import requests
 import json
 import psi.support
+import psi.support.log
+log = psi.support.log.logFile('psi.log', 'General', 'All')
+log.log('INFO', 'PSI Initializing.')
+#DO INIT
 apikey = None
+#FINISH INIT
+log.log('INFO', 'PSI init completed.')
 class newSite:
     def __init__(self, url) -> None:
+        newSitelog = psi.support.log.logFile('psi.log', 'General', 'Class Method')
+        newSitelog.log('INFO', 'New class object created: '+url)
         if url.startswith("http://") == True:
             self.url = url
             self.cleanURL = url.strip('http://')
