@@ -12,15 +12,21 @@ class newSite:
     def __init__(self, url) -> None:
         log.log('INFO', 'New class object created: '+url)
         if url.startswith("http://") == True:
-            self.url = url
             self.cleanURL = url.strip('http://')
-        elif url.startswith("https://") == True:
             self.url = url
+            log.log('INFO', 'OPT1 Clean URL defined as: '+self.cleanURL)
+        elif url.startswith("https://") == True:
             self.cleanURL = url.strip('https://')
+            self.url = url
+            log.log('INFO', 'OPT2 Clean URL defined as: '+self.cleanURL)
         elif url.startswith("www") == True:
+            self.cleanURL = url
             self.url = "http://" + url
+            log.log('INFO', 'OPT3 Clean URL defined as: '+self.cleanURL)
         else:
+            self.cleanURL = url
             self.url = "http://" + url
+            log.log('INFO', 'OPT4 Clean URL defined as: '+self.cleanURL)
         log.log('INFO', 'Object init completed: '+url)
     def getResult(self):
         log.log('INFO', 'Got call to pull info for: '+self.url)
