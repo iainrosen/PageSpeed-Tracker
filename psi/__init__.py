@@ -21,20 +21,48 @@ class newSite:
             self.url = "http://" + url
         else:
             self.url = "http://" + url
+        log.log('INFO', 'Object init completed: '+url)
     def getResult(self):
+        log.log('INFO', 'Got call to pull info for: '+self.url)
         if apikey == None:
+            log.log('CRIT', 'API key not defined, unable to request.')
             raise Exception("Unable to create site object, no API key defined.")
         requestUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?key=' + apikey + '&url=' + self.url
+        log.log('INFO', 'Requesting: '+requestUrl)
         r = requests.get(requestUrl)
         if r.status_code != 200:
+            log.log('CRIT', 'Got bad request status code: '+r.status_code)
             raise Exception("Unable to query, API returned code " + str(r.status_code))
         else:
-            self.rdump = r.json()
-            self = psi.support.defineProperties(self)
+            log.log('INFO', 'Got request status code: '+str(r.status_code))
+            log.log('INFO', 'Dumping data to self.rdump from request')
+            try:
+                self.rdump = r.json()
+                log.log('INFO', 'Completed dump.')
+            except Exception as exp:
+                log.log('ERR', 'Unable to dump data, got exception: '+exp)
+            log.log('INFO', 'Sending to support package to define request properties')
+            try:
+                self = psi.support.defineProperties(self)
+                log.log('INFO', 'Completed property definition')
+            except Exception as exp:
+                log.log('ERR', 'Unable to define, got exception: '+exp)
     def saveResult(self, filename):
-        with open(filename, 'w') as saveFile:
-            saveFile.write(json.dumps(self.rdump))
+        log.log('INFO', 'Got call to save results')
+        try:
+            log.log('INFO', 'Writing file: '+filename)
+            with open(filename, 'w') as saveFile:
+                saveFile.write(json.dumps(self.rdump))
+            log.log('INFO', 'Completed file write to: '+filename)
+        except Exception as exp:
+            log.log('ERR', 'Got exception saving results: '+exp)
     def readResult(self, filename):
-        with open(filename, 'r') as saveFile:
-            self.rdump = json.loads(saveFile.read())
-            self = psi.support.defineProperties(self)
+        log.log('INFO', 'Got call to read results')
+        try:
+            with open(filename, 'r') as saveFile:
+                log.log('INFO', 'Reading from file: '+filename)
+                self.rdump = json.loads(saveFile.read())
+                self = psi.support.defineProperties(self)
+        except Exception as exp:
+            log.log('ERR', 'Got exception reading results: '+exp)
+
