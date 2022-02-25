@@ -6,4 +6,4 @@
 - Get PageSpeed results with **s.getResult()**
 - Save the results with **s.saveResult(filename)**
 - Read results from file with **s.readResult(filename)**
-- Get specific test properties with **s.getTestProperty(property)**
+- Get specific test properties with **s.property**
