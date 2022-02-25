@@ -12,11 +12,11 @@ class newSite:
     def __init__(self, url) -> None:
         log.log('INFO', 'New class object created: '+url)
         if url.startswith("http://") == True:
-            self.cleanURL = url.strip('http://')
+            self.cleanURL = url[7:]
             self.url = url
             log.log('INFO', 'OPT1 Clean URL defined as: '+self.cleanURL)
         elif url.startswith("https://") == True:
-            self.cleanURL = url.strip('https://')
+            self.cleanURL = url[8:]
             self.url = url
             log.log('INFO', 'OPT2 Clean URL defined as: '+self.cleanURL)
         elif url.startswith("www") == True:
