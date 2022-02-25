@@ -37,7 +37,7 @@ class newSite:
         log.log('INFO', 'Requesting: '+requestUrl)
         r = requests.get(requestUrl)
         if r.status_code != 200:
-            log.log('CRIT', 'Got bad request status code: '+r.status_code)
+            log.log('CRIT', 'Got bad request status code: '+str(r.status_code))
             raise Exception("Unable to query, API returned code " + str(r.status_code))
         else:
             log.log('INFO', 'Got request status code: '+str(r.status_code))
